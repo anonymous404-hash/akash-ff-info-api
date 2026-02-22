@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # ===== UPDATED CREDITS =====
-DEVELOPER = "Akash Exploitss"
+DEVELOPER = "Akash_Exploits_bot"
 BOT_HANDLE = "@Akash_Exploits_bot"
 
 # ===== KEYS DATABASE =====
