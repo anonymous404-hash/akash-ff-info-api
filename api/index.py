@@ -5,19 +5,23 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# ===== CREDITS =====
-DEVELOPER = "AKASH HACKER"
+# ===== UPDATED CREDITS =====
+DEVELOPER = "Akash Exploitss"
+BOT_HANDLE = "@Akash_Exploits_bot"
 
 # ===== KEYS DATABASE =====
 KEYS_DB = {
     "user1": {"key": "AKASH_PAID31DAYS", "expiry": "2026-03-31"}, 
     "user2": {"key": "AKASH_PAID1DAYS", "expiry": "2026-02-12"},
-    "trial": {"key": "AKASH_PAID3MONTH", "expiry": "2026-04-29"},
+    "admin": {"key": "AKASH_PARMA", "expiry": "2030-03-30"},
 }
 
 @app.route('/')
 def home():
-    return jsonify({"message": "AKASH HACKER API is Running!", "dev": DEVELOPER})
+    return jsonify({
+        "message": f"{DEVELOPER} System is Online!", 
+        "dev": BOT_HANDLE
+    })
 
 @app.route('/akash/info/<uid>')
 def get_ff_data(uid):
@@ -50,28 +54,29 @@ def get_ff_data(uid):
         if not raw_data or "basicInfo" not in raw_data:
             return jsonify({"success": False, "message": "UID Not Found"})
 
-        # 4. Same to Same Response + Your Branding
-        # Note: captainBasicInfo me wahi data dala hai jo basicInfo me hai (duplicate fix)
+        # 4. Final Response with New Branding
         final_data = {
             "success": True,
             "developer": DEVELOPER,
+            "bot_handle": BOT_HANDLE,
             "key_details": {
                 "status": "Active",
                 "expiry_date": found_user['expiry'],
                 "days_remaining": f"{days_left} Days" if days_left > 0 else "Last Day Today"
             },
             "basicInfo": raw_data.get("basicInfo"),
-            "captainBasicInfo": raw_data.get("basicInfo"), # Yeh raha woh fix!
+            "captainBasicInfo": raw_data.get("basicInfo"),
             "clanBasicInfo": raw_data.get("clanBasicInfo"),
             "creditScoreInfo": raw_data.get("creditScoreInfo"),
             "diamondCostRes": raw_data.get("diamondCostRes"),
             "petInfo": raw_data.get("petInfo"),
             "profileInfo": raw_data.get("profileInfo"),
             "socialInfo": raw_data.get("socialInfo"),
-            "owner_contact": "https://t.me/AkashExploits1"
+            "owner_contact": f"https://t.me/Akash_Exploits_bot",
+            "powered_by": "TITAN HYPERION V6"
         }
 
-        # JSON Formatting (Indent 2 taaki sundar dikhe)
+        # JSON Formatting
         json_output = json.dumps(final_data, ensure_ascii=False, indent=2)
         return Response(json_output, content_type="application/json; charset=utf-8")
 
